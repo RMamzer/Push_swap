@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:35:22 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/03 17:35:45 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/03 18:23:54 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# define ERORR 1
-
+# define ERROR 1
+ 
 
 #endif

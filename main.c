@@ -6,14 +6,18 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/03 17:36:25 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/03 18:25:13 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+//function to write error
 
 int main(int argc, char ** argv)
 {
 	if (argc == 1 || (argc ==2 && !argv[1][0]))
 		return (ERROR);
+	
+		return (0);
+	
 }
