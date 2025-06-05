@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
+/*   Created: 2025/06/05 16:27:20 by rmamzer           #+#    #+#             */
 /*   Updated: 2025/06/05 16:38:46 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//#include "libft.h"
-//function to write error
 
-int main(int argc, char ** argv)
+void error_detected(t_node **a)
 {
-	t_node	*a;
-	t_node	*b;
-
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	a = NULL;
-	b = NULL;
-	
-	return (0);
-	
+	//free the node a
+	//add ft_printf
+	ft_printf("Error\n");
+	exit (1);
 }
-

@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/05 16:38:46 by rmamzer          ###   ########.fr       */
+/*   Created: 2025/04/25 18:45:16 by rmamzer           #+#    #+#             */
+/*   Updated: 2025/04/29 14:44:45 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-//#include "libft.h"
-//function to write error
+#include "libft.h"
 
-int main(int argc, char ** argv)
+//Counts the number of nodes in the list.
+int	ft_lstsize(t_list *lst)
 {
-	t_node	*a;
-	t_node	*b;
+	int	i;
 
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	a = NULL;
-	b = NULL;
-	
-	return (0);
-	
+	i = 0;
+	while (lst != NULL)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
 }
-

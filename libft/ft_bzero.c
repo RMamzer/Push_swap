@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/05 16:38:46 by rmamzer          ###   ########.fr       */
+/*   Created: 2025/04/16 18:47:50 by rmamzer           #+#    #+#             */
+/*   Updated: 2025/04/28 15:18:16 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-//#include "libft.h"
-//function to write error
-
-int main(int argc, char ** argv)
+#include "libft.h"
+//erases the data in the n bytes of the memory starting at the location
+//pointed to by s, by writing zeroes to that area.
+void	ft_bzero( void *s, size_t n)
 {
-	t_node	*a;
-	t_node	*b;
+	size_t			i;
+	unsigned char	*ptr;
 
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	a = NULL;
-	b = NULL;
-	
-	return (0);
-	
+	ptr = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		ptr[i] = 0;
+		i++;
+	}
 }
-

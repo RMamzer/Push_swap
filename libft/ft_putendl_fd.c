@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/05 16:38:46 by rmamzer          ###   ########.fr       */
+/*   Created: 2025/04/24 12:27:17 by rmamzer           #+#    #+#             */
+/*   Updated: 2025/04/29 14:12:01 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-//#include "libft.h"
-//function to write error
+#include "libft.h"
 
-int main(int argc, char ** argv)
+// Outputs the string ’s’ to the specified file
+// descriptor followed by a newline.
+void	ft_putendl_fd(char *s, int fd)
 {
-	t_node	*a;
-	t_node	*b;
-
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	a = NULL;
-	b = NULL;
-	
-	return (0);
-	
+	while (*s)
+	{
+		write(fd, s, 1);
+		s++;
+	}
+	write(fd, "\n", 1);
 }
-

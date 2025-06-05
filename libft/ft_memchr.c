@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/05 16:38:46 by rmamzer          ###   ########.fr       */
+/*   Created: 2025/04/18 10:31:07 by rmamzer           #+#    #+#             */
+/*   Updated: 2025/04/28 20:30:47 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-//#include "libft.h"
-//function to write error
+#include "libft.h"
 
-int main(int argc, char ** argv)
+//Scans the initial n bytes of the memory area pointed to by s for the first
+// instance of c. Return a pointer to the matching byte or NULL
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_node	*a;
-	t_node	*b;
+	unsigned const char	*str;
 
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	a = NULL;
-	b = NULL;
-	
-	return (0);
-	
+	str = (unsigned const char *)s;
+	while (n > 0)
+	{
+		if (*str == (unsigned char)c)
+			return ((void *)str);
+		str++;
+		n--;
+	}
+	return (NULL);
 }
-

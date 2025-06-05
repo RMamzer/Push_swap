@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:35:22 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/03 18:23:54 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/05 16:36:55 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# define ERROR 1
- 
+#include <unistd.h>
+typedef struct s_node
+{
+		int	num;
+		int	index;
+
+		struct s_node	*next;
+		struct s_node	*target;
+}	t_node;
 
 #endif

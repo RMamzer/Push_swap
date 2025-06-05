@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/05 16:38:46 by rmamzer          ###   ########.fr       */
+/*   Created: 2025/04/25 19:48:02 by rmamzer           #+#    #+#             */
+/*   Updated: 2025/04/29 15:11:45 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-//#include "libft.h"
-//function to write error
+#include "libft.h"
 
-int main(int argc, char ** argv)
+// Takes a node as parameter and frees its content
+// using the function ’del’. Free the node itself but
+// does NOT free the next node.
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	t_node	*a;
-	t_node	*b;
-
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	a = NULL;
-	b = NULL;
-	
-	return (0);
-	
+	if (!lst || !del)
+		return ;
+	del (lst->content);
+	free(lst);
 }
-

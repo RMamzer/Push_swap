@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/05 16:38:46 by rmamzer          ###   ########.fr       */
+/*   Created: 2025/04/16 18:54:20 by rmamzer           #+#    #+#             */
+/*   Updated: 2025/04/28 14:21:12 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-//#include "libft.h"
-//function to write error
+#include "libft.h"
 
-int main(int argc, char ** argv)
+//checks for a digit (0 through 9).
+// 0 if no, other if yes
+int	ft_isdigit(int c)
 {
-	t_node	*a;
-	t_node	*b;
-
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	if (c >= '0' && c <= '9')
 		return (1);
-	a = NULL;
-	b = NULL;
-	
 	return (0);
-	
 }
-

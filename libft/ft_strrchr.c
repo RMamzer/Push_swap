@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/05 16:38:46 by rmamzer          ###   ########.fr       */
+/*   Created: 2025/04/20 12:26:40 by rmamzer           #+#    #+#             */
+/*   Updated: 2025/04/28 19:20:47 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-//#include "libft.h"
-//function to write error
+#include "libft.h"
 
-int main(int argc, char ** argv)
+//Returns a pointer to the last occurrence of the character c in the string s
+char	*ft_strrchr(const char *s, int c)
 {
-	t_node	*a;
-	t_node	*b;
+	const char	*ptr;
 
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	a = NULL;
-	b = NULL;
-	
-	return (0);
-	
+	ptr = NULL;
+	while (*s)
+	{
+		if ((unsigned char)*s == (unsigned char)c)
+			ptr = s;
+		s++;
+	}
+	if (*s == c)
+		return ((char *)s);
+	return ((char *)ptr);
 }
-
