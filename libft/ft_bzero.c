@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_errors.c                                     :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 16:27:20 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/09 15:41:59 by rmamzer          ###   ########.fr       */
+/*   Created: 2025/04/16 18:47:50 by rmamzer           #+#    #+#             */
+/*   Updated: 2025/04/28 15:18:16 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	ft_free_split(char **splitted)
+#include "libft.h"
+//erases the data in the n bytes of the memory starting at the location
+//pointed to by s, by writing zeroes to that area.
+void	ft_bzero( void *s, size_t n)
 {
-	size_t	i;
+	size_t			i;
+	unsigned char	*ptr;
 
+	ptr = (unsigned char *)s;
 	i = 0;
-	while (splitted[i])
-		free(splitted[i++]);
-	free(splitted);
-	splitted = NULL;
-	return (NULL);
-}
-
-void	free_stack(a)
-{
-	//write later
-}
-
-void	errors_exit(t_node **a, char **argv, int split_used)
-{
-
-	if (split_used)
-		ft_free_split(argv);
-	free_stack(a);
-	write (2, "Error\n", 6);
-	exit (1);
+	while (i < n)
+	{
+		ptr[i] = 0;
+		i++;
+	}
 }

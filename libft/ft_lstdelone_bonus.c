@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_errors.c                                     :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 16:27:20 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/09 15:41:59 by rmamzer          ###   ########.fr       */
+/*   Created: 2025/04/25 19:48:02 by rmamzer           #+#    #+#             */
+/*   Updated: 2025/04/29 15:11:45 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_free_split(char **splitted)
+// Takes a node as parameter and frees its content
+// using the function ’del’. Free the node itself but
+// does NOT free the next node.
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	size_t	i;
-
-	i = 0;
-	while (splitted[i])
-		free(splitted[i++]);
-	free(splitted);
-	splitted = NULL;
-	return (NULL);
-}
-
-void	free_stack(a)
-{
-	//write later
-}
-
-void	errors_exit(t_node **a, char **argv, int split_used)
-{
-
-	if (split_used)
-		ft_free_split(argv);
-	free_stack(a);
-	write (2, "Error\n", 6);
-	exit (1);
+	if (!lst || !del)
+		return ;
+	del (lst->content);
+	free(lst);
 }

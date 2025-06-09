@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_errors.c                                     :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 16:27:20 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/09 15:41:59 by rmamzer          ###   ########.fr       */
+/*   Created: 2025/04/20 12:26:40 by rmamzer           #+#    #+#             */
+/*   Updated: 2025/04/28 19:20:47 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_free_split(char **splitted)
+//Returns a pointer to the last occurrence of the character c in the string s
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
+	const char	*ptr;
 
-	i = 0;
-	while (splitted[i])
-		free(splitted[i++]);
-	free(splitted);
-	splitted = NULL;
-	return (NULL);
-}
-
-void	free_stack(a)
-{
-	//write later
-}
-
-void	errors_exit(t_node **a, char **argv, int split_used)
-{
-
-	if (split_used)
-		ft_free_split(argv);
-	free_stack(a);
-	write (2, "Error\n", 6);
-	exit (1);
+	ptr = NULL;
+	while (*s)
+	{
+		if ((unsigned char)*s == (unsigned char)c)
+			ptr = s;
+		s++;
+	}
+	if (*s == c)
+		return ((char *)s);
+	return ((char *)ptr);
 }

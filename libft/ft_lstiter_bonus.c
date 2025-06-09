@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_errors.c                                     :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 16:27:20 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/09 15:41:59 by rmamzer          ###   ########.fr       */
+/*   Created: 2025/04/25 20:35:32 by rmamzer           #+#    #+#             */
+/*   Updated: 2025/04/29 15:17:52 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_free_split(char **splitted)
+// Iterates through the list (struct) ’lst’ and applies the
+// function ’f’ to the content of each node.
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	i;
-
-	i = 0;
-	while (splitted[i])
-		free(splitted[i++]);
-	free(splitted);
-	splitted = NULL;
-	return (NULL);
-}
-
-void	free_stack(a)
-{
-	//write later
-}
-
-void	errors_exit(t_node **a, char **argv, int split_used)
-{
-
-	if (split_used)
-		ft_free_split(argv);
-	free_stack(a);
-	write (2, "Error\n", 6);
-	exit (1);
+	if (!lst || !f)
+		return ;
+	while (lst != NULL)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }

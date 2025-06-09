@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_errors.c                                     :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 16:27:20 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/09 15:41:59 by rmamzer          ###   ########.fr       */
+/*   Created: 2025/04/20 11:33:08 by rmamzer           #+#    #+#             */
+/*   Updated: 2025/04/28 19:07:01 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_free_split(char **splitted)
+//returns a pointer to the first occurrence of the character c in the string s.
+//The terminating null byte is considered part of the string,
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
+	unsigned char		chr;
+	unsigned const char	*str;
 
-	i = 0;
-	while (splitted[i])
-		free(splitted[i++]);
-	free(splitted);
-	splitted = NULL;
+	chr = (unsigned char)c;
+	str = (unsigned const char *)s;
+	while (*str)
+	{
+		if (*str == chr)
+			return ((char *)str);
+		str++;
+	}
+	if (*str == chr)
+		return ((char *)str);
 	return (NULL);
-}
-
-void	free_stack(a)
-{
-	//write later
-}
-
-void	errors_exit(t_node **a, char **argv, int split_used)
-{
-
-	if (split_used)
-		ft_free_split(argv);
-	free_stack(a);
-	write (2, "Error\n", 6);
-	exit (1);
 }

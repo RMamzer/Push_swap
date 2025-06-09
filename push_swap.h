@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:35:22 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/09 12:35:55 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/09 15:45:27 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 #include <unistd.h>
 #include <limits.h>
+//how to import libft.h?
+
 typedef struct s_node
 {
 		int	num;
@@ -26,11 +28,16 @@ typedef struct s_node
 }	t_node;
 
 
-//split functions:
-static void		*ft_free(char **splitted);
-static size_t	ft_wlen(char const *s, char c);
-static size_t	ft_wcount(char const *s, char c);
-char			**ft_split(char const *s, char c);
+
+//main
+int	check_only_digits(char *str);
+int	ft_atoi_limits(const char *nptr, t_node **a, char **argv, int split_used);
+void	create_stack_a(t_node **a, char **argv, int split_used);
+int main(int argc, char ** argv);
 
 
+//check_errors
+void	ft_free_split(char **splitted);
+void	free_stack(a);
+void	errors_exit(t_node **a, char **argv, int split_used);
 #endif
