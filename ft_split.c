@@ -6,11 +6,11 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:42:17 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/04/29 13:13:51 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/09 12:48:02 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 static void	*ft_free(char **splitted)
 {
