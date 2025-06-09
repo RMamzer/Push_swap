@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/09 16:24:04 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/09 18:41:19 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,22 @@ int	ft_atoi_limits(const char *nptr, t_node **a, char **argv, int split_used)
 	return ((int)num * sign);
 }
 
-int	check_dulicates(t_node **a, int num)
+int	check_dulicates(t_node **a, int num, char **argv, int split_used)
 {
-
-
+	t_node	*temp;
+	if (*a == NULL)
+		return (0);
+	temp = *a;
+	while(temp != NULL)
+	{
+		if ( temp->number == num)
+			errors_exit(a, argv, split_used);
+		temp = temp->next;
+	}
 }
 
 void	create_stack_a(t_node **a, char **argv, int split_used)
 {
-	// check that its a num;  -----------------> DONE
-	// check that its within int --------------> DONE
-	// check that there are no duplicates before>NOW
-	// Add to nodes
 	int num;
 	int i;
 
@@ -84,9 +88,9 @@ void	create_stack_a(t_node **a, char **argv, int split_used)
 		if(!check_only_digits(argv[i]))
 			errors_exit(a, argv, split_used);
 		num = ft_atoi_limits(argv[i], a, argv, split_used);
-		if (!check_duplicates(a, num))
+		if (!check_duplicates(a, num, argv, split_used))
 			errors_exit(a, argv, split_used);
-		add_node(a, num);
+		add_node(a, num, argv, split_used);
 	}
 }
 
@@ -100,12 +104,20 @@ int main(int argc, char ** argv)
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], " ");
-		//check if NULL?
+		if (argv == NULL);
+			errors_exit(&a, argv, 1);
 		create_stack_a(&a, argv, 0);
 		//free_split (argv);????????????????????
 	}
 	else
 		create_stack_a(&a, argv + 1, 1);
+
+
+	printf("ac count =%d\n", argc);
+	// check_sort(a_stack, b_stack, ac, splitted);
+	printf("A stack contents:\n");
+	print_stack(a);
+	free_stack(&a);
 
 	return (0);
 }

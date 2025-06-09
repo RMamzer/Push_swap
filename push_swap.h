@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:35:22 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/09 15:45:27 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/09 17:24:09 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <unistd.h>
-#include <limits.h>
-//how to import libft.h?
+# include <unistd.h>
+# include <limits.h>
+# include "../libft/libft.h"
 
 typedef struct s_node
 {
-		int	num;
+		int	number;
 		int	index;
 
 		struct s_node	*next;

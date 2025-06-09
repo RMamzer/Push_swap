@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:27:20 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/09 15:41:59 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/09 18:37:22 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,18 @@ void	ft_free_split(char **splitted)
 	return (NULL);
 }
 
-void	free_stack(a)
+void	free_stack(t_node **a)
 {
-	//write later
+	t_list	*current;
+	t_list	*temp;
+	if (a  == NULL)
+		return ;
+	current = *a;
+	while(current != NULL)
+		temp = current;
+		current = current->next;
+		free (temp);
+	*a = NULL;
 }
 
 void	errors_exit(t_node **a, char **argv, int split_used)
