@@ -6,20 +6,21 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/09 18:41:19 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/10 14:21:21 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 //#include "libft/libft.h"
 //#include "libft.h"
+#include <stdio.h>
 
 int check_only_digits(char *str)
 {
 	size_t i;
 	//check if NULL ptr;
 	i = 0;
-	if (str[i] != '-' || str[i] !='+' || !ft_isdigit(str[i]))
+	if (str[i] != '-' && str[i] !='+' && !ft_isdigit(str[i]))
 		return (1);
 	else if(str[i] == '-' || str[i] =='+' )
 		i++;
@@ -62,7 +63,7 @@ int	ft_atoi_limits(const char *nptr, t_node **a, char **argv, int split_used)
 	return ((int)num * sign);
 }
 
-int	check_dulicates(t_node **a, int num, char **argv, int split_used)
+int	check_duplicates(t_node **a, int num)
 {
 	t_node	*temp;
 	if (*a == NULL)
@@ -71,9 +72,10 @@ int	check_dulicates(t_node **a, int num, char **argv, int split_used)
 	while(temp != NULL)
 	{
 		if ( temp->number == num)
-			errors_exit(a, argv, split_used);
+			return(1);
 		temp = temp->next;
 	}
+	return (0);
 }
 
 void	create_stack_a(t_node **a, char **argv, int split_used)
@@ -88,13 +90,13 @@ void	create_stack_a(t_node **a, char **argv, int split_used)
 		if(!check_only_digits(argv[i]))
 			errors_exit(a, argv, split_used);
 		num = ft_atoi_limits(argv[i], a, argv, split_used);
-		if (!check_duplicates(a, num, argv, split_used))
+		if (!check_duplicates(a, num))
 			errors_exit(a, argv, split_used);
 		add_node(a, num, argv, split_used);
 	}
 }
 
-int main(int argc, char ** argv)
+int main(int argc, char **argv)
 {
 	t_node	*a;
 	t_node	*b;
@@ -104,15 +106,15 @@ int main(int argc, char ** argv)
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], " ");
-		if (argv == NULL);
+		if (argv == NULL)
 			errors_exit(&a, argv, 1);
 		create_stack_a(&a, argv, 0);
-		//free_split (argv);????????????????????
+		free_split (argv);
 	}
 	else
 		create_stack_a(&a, argv + 1, 1);
 
-
+//CHECK FUCTION _ DLEETE LATER
 	printf("ac count =%d\n", argc);
 	// check_sort(a_stack, b_stack, ac, splitted);
 	printf("A stack contents:\n");
@@ -120,4 +122,16 @@ int main(int argc, char ** argv)
 	free_stack(&a);
 
 	return (0);
+}
+
+void	print_stack(t_node *stack)
+{
+	while (stack)
+	{
+		printf("num: %d", stack->number);
+		// Optional: print index too
+		//printf(", index: %d", stack->index);
+		printf("\n");
+		stack = stack->next;
+	}
 }
