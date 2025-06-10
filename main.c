@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/10 16:37:31 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/10 16:52:58 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ int check_only_digits(char *str)
 	//check if NULL ptr;
 	i = 0;
 	if (str[i] != '-' && str[i] !='+' && !ft_isdigit(str[i]))
-		return (1);
+		return (0);
 	else if(str[i] == '-' || str[i] =='+' )
 		i++;
 	if (!ft_isdigit(str[i]))
-		return (1);
+		return (0);
 	while(str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			return(1);
+			return(0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	ft_atoi_limits(const char *nptr, t_node **a, char **argv, int split_used)
@@ -67,15 +67,15 @@ int	check_duplicates(t_node **a, int num)
 {
 	t_node	*temp;
 	if (*a == NULL)
-		return (0);
+		return (1);
 	temp = *a;
 	while(temp != NULL)
 	{
 		if ( temp->number == num)
-			return(1);
+			return(0);
 		temp = temp->next;
 	}
-	return (0);
+	return (1);
 }
 
 void	create_stack_a(t_node **a, char **argv, int split_used)
@@ -87,10 +87,10 @@ void	create_stack_a(t_node **a, char **argv, int split_used)
 	i = 0;
 	while (argv[i])
 	{
-		if(check_only_digits(argv[i]))
+		if(!check_only_digits(argv[i]))
 			errors_exit(a, argv, split_used);
 		num = ft_atoi_limits(argv[i], a, argv, split_used);
-		if (check_duplicates(a, num))
+		if (!check_duplicates(a, num))
 			errors_exit(a, argv, split_used);
 		add_node(a, num, argv, split_used);
 		i++;
@@ -108,12 +108,12 @@ int main(int argc, char **argv)
 	{
 		argv = ft_split(argv[1], ' ');
 		if (argv == NULL)
-			errors_exit(&a, argv, 1);
-		create_stack_a(&a, argv, 0);
+			errors_exit(&a, argv, 0);
+		create_stack_a(&a, argv, 1);
 		free_split (argv);
 	}
 	else
-		create_stack_a(&a, argv + 1, 1);
+		create_stack_a(&a, argv + 1, 0);
 
 //CHECK FUCTION _ DLEETE LATER
 	printf("ac count =%d\n", argc);
