@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:35:22 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/10 14:15:54 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/10 16:04:38 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ int		main(int argc, char ** argv);
 int		check_duplicates(t_node **a, int num);
 
 //check_errors
-void	ft_free_split(char **splitted);
+void	free_split(char **splitted);
 void	free_stack(t_node **a);
 void	errors_exit(t_node **a, char **argv, int split_used);
+
+//node_operations
+void	add_node(t_node **a, int num, char **argv, int split_used);
+t_node	*get_last_node(t_node	*stack);
 #endif

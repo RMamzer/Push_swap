@@ -6,7 +6,7 @@
 #    By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 16:44:05 by rmamzer           #+#    #+#              #
-#    Updated: 2025/06/10 14:44:04 by rmamzer          ###   ########.fr        #
+#    Updated: 2025/06/10 16:39:28 by rmamzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,9 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 CC = cc
 
-SRCS = *.c
+SRCS = main.c node_operations.c check_errors.c
 
 OBJS = $(SRCS:.c=.o)
-.SECONDARY: ${OBJS}
 
 LIBFT_DIR = ./libft
 
@@ -48,4 +47,4 @@ fclean: clean
 re: fclean all
 
 ## CLEAN BEFORE SUBMISSION
-.PHONY: all re clean fclean test gdbtest  valgrindtest
+.PHONY: all re clean fclean

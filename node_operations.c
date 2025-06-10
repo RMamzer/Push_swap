@@ -6,15 +6,26 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:36:21 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/09 17:26:30 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/10 16:04:21 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 //NEED TO WORK ON A CONTENT and what is inside of node
-void add_node(t_node **a, int num, char **argv, int split_used)
+
+t_node	*get_last_node(t_node	*stack)
+{
+	if (stack == NULL)
+		return (NULL);
+	while (stack->next != NULL)
+		stack = stack->next;
+	return (stack);
+}
+
+void	add_node(t_node **a, int num, char **argv, int split_used)
 {
 	t_node	*new_node;
+	t_node	*last_node;
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		errors_exit(a, argv, split_used);
@@ -26,5 +37,9 @@ void add_node(t_node **a, int num, char **argv, int split_used)
 	if (*a == NULL)
 		*a = new_node;
 	else
-		ft_lstadd_back(a,new_node);
+	{
+		last_node = get_last_node(*a);
+		last_node->next = new_node;
+	}
+
 }

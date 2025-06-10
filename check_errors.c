@@ -6,13 +6,13 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:27:20 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/10 14:24:26 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/10 16:04:51 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_free_split(char **splitted)
+void	free_split(char **splitted)
 {
 	size_t	i;
 
@@ -43,7 +43,7 @@ void	errors_exit(t_node **a, char **argv, int split_used)
 {
 
 	if (split_used)
-		ft_free_split(argv);
+		free_split(argv);
 	free_stack(a);
 	write (2, "Error\n", 6);
 	exit (1);

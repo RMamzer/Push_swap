@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/10 14:21:21 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/10 16:37:31 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_atoi_limits(const char *nptr, t_node **a, char **argv, int split_used)
 		num = num * 10 + (nptr[i] - '0');
 		if ((num > INT_MAX && sign == 1)
 			|| (num > (long)INT_MAX + 1 && sign == -1))
-			error_exit(a, argv, split_used);
+			errors_exit(a, argv, split_used);
 		i++;
 	}
 	return ((int)num * sign);
@@ -87,25 +87,26 @@ void	create_stack_a(t_node **a, char **argv, int split_used)
 	i = 0;
 	while (argv[i])
 	{
-		if(!check_only_digits(argv[i]))
+		if(check_only_digits(argv[i]))
 			errors_exit(a, argv, split_used);
 		num = ft_atoi_limits(argv[i], a, argv, split_used);
-		if (!check_duplicates(a, num))
+		if (check_duplicates(a, num))
 			errors_exit(a, argv, split_used);
 		add_node(a, num, argv, split_used);
+		i++;
 	}
 }
 
 int main(int argc, char **argv)
 {
 	t_node	*a;
-	t_node	*b;
-
+//	t_node	*b;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
+	a = NULL;
 	if (argc == 2)
 	{
-		argv = ft_split(argv[1], " ");
+		argv = ft_split(argv[1], ' ');
 		if (argv == NULL)
 			errors_exit(&a, argv, 1);
 		create_stack_a(&a, argv, 0);
