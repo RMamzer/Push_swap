@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:35:22 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/10 16:04:38 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/11 15:00:26 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_node
 	//	int	index;
 
 		struct s_node	*next;
+		struct s_node	*previous;
 		struct s_node	*target;
 }	t_node;
 
@@ -46,4 +47,9 @@ void	errors_exit(t_node **a, char **argv, int split_used);
 //node_operations
 void	add_node(t_node **a, int num, char **argv, int split_used);
 t_node	*get_last_node(t_node	*stack);
+
+//push_operations
+void	push_operation(t_node **dest,t_node **src);
+void	pa(t_node **a, t_node **b);
+void	pb(t_node **a, t_node **b);
 #endif

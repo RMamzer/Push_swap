@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/10 17:11:08 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/11 13:55:00 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,11 @@ void	create_stack_a(t_node **a, char **argv, int split_used)
 int main(int argc, char **argv)
 {
 	t_node	*a;
-//	t_node	*b;
+	t_node	*b;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
 	a = NULL;
+	b = NULL;
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
@@ -115,7 +116,8 @@ int main(int argc, char **argv)
 	else
 		create_stack_a(&a, argv + 1, 0);
 
-//CHECK FUCTION _ DLEETE LATER
+
+//CHECK FUCTION _ DELETE LATER
 	printf("ac count =%d\n", argc);
 	// check_sort(a_stack, b_stack, ac, splitted);
 	printf("A stack contents:\n");

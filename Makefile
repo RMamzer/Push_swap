@@ -6,7 +6,7 @@
 #    By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 16:44:05 by rmamzer           #+#    #+#              #
-#    Updated: 2025/06/10 16:39:28 by rmamzer          ###   ########.fr        #
+#    Updated: 2025/06/11 14:54:29 by rmamzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 CC = cc
 
-SRCS = main.c node_operations.c check_errors.c
+SRCS = main.c node_operations.c check_errors.c push_operations.c
 
 OBJS = $(SRCS:.c=.o)
 

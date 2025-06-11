@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:27:20 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/10 16:04:51 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/11 14:10:39 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,4 @@ void	errors_exit(t_node **a, char **argv, int split_used)
 	write (2, "Error\n", 6);
 	exit (1);
 }
+

@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:36:21 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/10 16:04:21 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/11 14:56:42 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ void	add_node(t_node **a, int num, char **argv, int split_used)
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		errors_exit(a, argv, split_used);
-//will pdate the variables in nodes for algorithm
-	new_node-> number = num;
-	new_node -> next = NULL;
-	new_node -> target = NULL;
+//will update the variables in nodes for algorithm
+	new_node->number = num;
+	new_node->next = NULL;
+	new_node->previous = NULL;
+	new_node->target = NULL;
 
 	if (*a == NULL)
 		*a = new_node;
@@ -40,6 +41,9 @@ void	add_node(t_node **a, int num, char **argv, int split_used)
 	{
 		last_node = get_last_node(*a);
 		last_node->next = new_node;
+		new_node->previous = last_node;
 	}
 
 }
+
+
