@@ -6,13 +6,13 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:53:19 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/11 17:53:47 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/13 11:45:35 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_operation(t_node **stack)
+static void	swap_operation(t_node **stack)
 {
 	t_node	*first;
 	t_node	*second;
@@ -37,7 +37,7 @@ void	sb(t_node **b)
 	swap_operation(b);
 	write (1, "sb\n", 3);
 }
-void ss(t_node **a, t_node ** b)
+void	ss(t_node **a, t_node ** b)
 {
 	swap_operation(a);
 	swap_operation(b);
