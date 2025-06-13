@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:36:21 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/11 14:56:42 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:14:54 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,47 @@ void	add_node(t_node **a, int num, char **argv, int split_used)
 		new_node->previous = last_node;
 	}
 
+}
+
+t_node	*get_max_node(t_node	*node)
+{
+	t_node	*max_node;
+
+	if (node == NULL)
+		return (NULL);
+	max_node = node;
+	while (node != NULL)
+	{
+		if	(max_node->number < node->number)
+			max_node = node;
+		node = node->next;
+	}
+	return (max_node);
+}
+
+int	stack_size(t_node *node)
+{
+	int	i;
+
+	i = 0;
+	while (node != NULL)
+	{
+		i++;
+		node = node->next;
+	}
+	return (i);
+}
+
+
+int	stack_is_sorted(t_node *a)
+{
+	while (a->next!= NULL)
+	{
+		if ( a->number > a->next->number)
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }
 
 

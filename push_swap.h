@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:35:22 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/13 13:56:54 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:13:11 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,29 @@ typedef struct s_node
 
 
 //main
-int		check_only_digits(char *str);
-int		ft_atoi_limits(const char *nptr, t_node **a, char **argv, int split_used);
+
+
 void	create_stack_a(t_node **a, char **argv, int split_used);
 int		main(int argc, char ** argv);
-int		check_duplicates(t_node **a, int num);
+void	sort_three(t_node **a);
+void sort_stack(t_node **a, t_node **b);
 
-//check_errors
+//free_and_exit
 void	free_split(char **splitted);
 void	free_stack(t_node **a);
 void	errors_exit(t_node **a, char **argv, int split_used);
 
+//check_input
+int		check_only_digits(char *str);
+int		ft_atoi_limits(const char *nptr, t_node **a, char **argv, int split_used);
+int		check_duplicates(t_node **a, int num);
+
 //node_operations
 void	add_node(t_node **a, int num, char **argv, int split_used);
 t_node	*get_last_node(t_node	*stack);
-
-
-
-
-void sort_stack(t_node **a, t_node **b);
+t_node	*get_max_node(t_node	*node);
+int	stack_size(t_node *node);
+int	stack_is_sorted(t_node *a);
 
 
 

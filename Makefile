@@ -6,7 +6,7 @@
 #    By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 16:44:05 by rmamzer           #+#    #+#              #
-#    Updated: 2025/06/13 11:48:30 by rmamzer          ###   ########.fr        #
+#    Updated: 2025/06/13 15:07:11 by rmamzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 CC = cc
 
-SRCS = main.c node_operations.c check_errors.c push_operations.c swap_operations.c rotate_operations.c reverse_rotate_operations.c
+SRCS = main.c check_input.c node_operations.c free_and_exit.c push_operations.c \
+swap_operations.c rotate_operations.c reverse_rotate_operations.c
 
 OBJS = $(SRCS:.c=.o)
 

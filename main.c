@@ -6,76 +6,25 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/13 13:59:09 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:06:30 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//#include "libft/libft.h"
-//#include "libft.h"
+//DELETE PRINTF!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #include <stdio.h>
 
-int check_only_digits(char *str)
+void	print_stack(t_node *stack)
 {
-	size_t i;
-	//check if NULL ptr;
-	i = 0;
-	if (str[i] != '-' && str[i] !='+' && !ft_isdigit(str[i]))
-		return (0);
-	else if(str[i] == '-' || str[i] =='+' )
-		i++;
-	if (!ft_isdigit(str[i]))
-		return (0);
-	while(str[i])
+	while (stack)
 	{
-		if (!ft_isdigit(str[i]))
-			return(0);
-		i++;
+		printf("num: %d", stack->number);
+		// Optional: print index too
+		//printf(", index: %d", stack->index);
+		printf("\n");
+		stack = stack->next;
 	}
-	return (1);
-}
 
-int	ft_atoi_limits(const char *nptr, t_node **a, char **argv, int split_used)
-{
-	int		sign;
-	int		i;
-	long	num;
-
-	sign = 1;
-	i = 0;
-	num = 0;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		num = num * 10 + (nptr[i] - '0');
-		if ((num > INT_MAX && sign == 1)
-			|| (num > (long)INT_MAX + 1 && sign == -1))
-			errors_exit(a, argv, split_used);
-		i++;
-	}
-	return ((int)num * sign);
-}
-
-int	check_duplicates(t_node **a, int num)
-{
-	t_node	*temp;
-	if (*a == NULL)
-		return (1);
-	temp = *a;
-	while(temp != NULL)
-	{
-		if ( temp->number == num)
-			return(0);
-		temp = temp->next;
-	}
-	return (1);
 }
 
 void	create_stack_a(t_node **a, char **argv, int split_used)
@@ -97,91 +46,6 @@ void	create_stack_a(t_node **a, char **argv, int split_used)
 	}
 }
 
-int main(int argc, char **argv)
-{
-	t_node	*a;
-	t_node	*b;
-
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	a = NULL;
-	b = NULL;
-	if (argc == 2)
-	{
-		argv = ft_split(argv[1], ' ');
-		if (argv == NULL || argv[0] == NULL)
-			errors_exit(&a, argv, 0);
-		create_stack_a(&a, argv, 1);
-		free_split (argv);
-	}
-	else
-		create_stack_a(&a, argv + 1, 0);
-	sort_stack(&a, &b);
-
-
-//CHECK FUCTION _ DELETE LATER
-	printf("ac count =%d\n", argc);
-	// check_sort(a_stack, b_stack, ac, splitted);
-	printf("A stack contents:\n");
-	print_stack(a);
-	free_stack(&a);
-
-	return (0);
-}
-
-void	print_stack(t_node *stack)
-{
-	while (stack)
-	{
-		printf("num: %d", stack->number);
-		// Optional: print index too
-		//printf(", index: %d", stack->index);
-		printf("\n");
-		stack = stack->next;
-	}
-}
-
-
-int	stack_size(t_node *node)
-{
-	int	i;
-
-	i = 0;
-	while (node != NULL)
-	{
-		i++;
-		node = node->next;
-	}
-	return (i);
-}
-
-
-int	stack_is_sorted(t_node *a)
-{
-	while (a->next!= NULL)
-	{
-		if ( a->number > a->next->number)
-			return (0);
-		a = a->next;
-	}
-	return (1);
-}
-
-t_node	*get_max_node(t_node	*node)
-{
-	t_node	*max_node;
-
-	if (node == NULL)
-		return (NULL);
-	max_node = node;
-	while (node != NULL)
-	{
-		if	(max_node->number < node->number)
-			max_node = node;
-		node = node->next;
-	}
-	return (max_node);
-}
 
 void	sort_three(t_node **a)
 {
@@ -216,3 +80,35 @@ void sort_stack(t_node **a, t_node **b)
 	b = a;
 }
 
+
+int main(int argc, char **argv)
+{
+	t_node	*a;
+	t_node	*b;
+
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
+		return (1);
+	a = NULL;
+	b = NULL;
+	if (argc == 2)
+	{
+		argv = ft_split(argv[1], ' ');
+		if (argv == NULL || argv[0] == NULL)
+			errors_exit(&a, argv, 0);
+		create_stack_a(&a, argv, 1);
+		free_split (argv);
+	}
+	else
+		create_stack_a(&a, argv + 1, 0);
+	sort_stack(&a, &b);
+
+
+//CHECK FUCTION _ DELETE LATER
+	printf("ac count =%d\n", argc);
+	// check_sort(a_stack, b_stack, ac, splitted);
+	printf("A stack contents:\n");
+	print_stack(a);
+	free_stack(&a);
+
+	return (0);
+}
