@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:36:21 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/13 15:14:54 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/13 18:09:46 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ void	add_node(t_node **a, int num, char **argv, int split_used)
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		errors_exit(a, argv, split_used);
-//will update the variables in nodes for algorithm
-	new_node->number = num;
+//will update the variables in nodes for algorithm --> optimize info
+	new_node->nbr = num;
 	new_node->next = NULL;
 	new_node->previous = NULL;
 	new_node->target = NULL;
+	new_node->above_median = 0;
 
 	if (*a == NULL)
 		*a = new_node;
@@ -55,7 +56,7 @@ t_node	*get_max_node(t_node	*node)
 	max_node = node;
 	while (node != NULL)
 	{
-		if	(max_node->number < node->number)
+		if	(max_node->nbr < node->nbr)
 			max_node = node;
 		node = node->next;
 	}
@@ -80,11 +81,9 @@ int	stack_is_sorted(t_node *a)
 {
 	while (a->next!= NULL)
 	{
-		if ( a->number > a->next->number)
+		if ( a->nbr > a->next->nbr)
 			return (0);
 		a = a->next;
 	}
 	return (1);
 }
-
-

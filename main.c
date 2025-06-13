@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/13 15:06:30 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/13 18:08:29 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_stack(t_node *stack)
 {
 	while (stack)
 	{
-		printf("num: %d", stack->number);
+		printf("num: %d", stack->nbr);
 		// Optional: print index too
 		//printf(", index: %d", stack->index);
 		printf("\n");
@@ -56,7 +56,7 @@ void	sort_three(t_node **a)
 		ra(a);
 	else if(max_node ==(*a)->next)
 		rra(a);
-	if ((*a)->number > (*a)->next->number)
+	if ((*a)->nbr > (*a)->next->nbr)
 		sa(a);
 }
 
@@ -74,8 +74,9 @@ void sort_stack(t_node **a, t_node **b)
 		{
 			sa(a);
 		}
-		 else if (size == 3)
+		else if (size == 3)
 		 	sort_three(a);
+		else sort_big(a, b);
 	}
 	b = a;
 }

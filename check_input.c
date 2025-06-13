@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 15:01:23 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/13 15:02:01 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/13 18:08:43 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	check_duplicates(t_node **a, int num)
 	temp = *a;
 	while(temp != NULL)
 	{
-		if ( temp->number == num)
+		if ( temp->nbr == num)
 			return(0);
 		temp = temp->next;
 	}
