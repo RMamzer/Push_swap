@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 14:09:57 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/13 11:44:23 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/13 11:51:45 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	push_operation(t_node **dest,t_node **src)
 	*src = (*src)->next;
 
 	if (*src != NULL)
-		(*src)->previous == NULL;
+		(*src)->previous = NULL;
 
 	node->previous = NULL;
 

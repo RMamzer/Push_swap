@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:27:20 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/11 14:10:39 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/13 12:08:11 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	free_stack(t_node **a)
 {
 	t_node	*current;
 	t_node	*temp;
-	if (a  == NULL)
-		return ;
+	if (a == NULL)
+		return;
 	current = *a;
 	while(current != NULL)
 	{

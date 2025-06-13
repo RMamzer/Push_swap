@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/11 13:55:00 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/13 13:59:09 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int main(int argc, char **argv)
 {
 	t_node	*a;
 	t_node	*b;
+
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
 	a = NULL;
@@ -115,6 +116,7 @@ int main(int argc, char **argv)
 	}
 	else
 		create_stack_a(&a, argv + 1, 0);
+	sort_stack(&a, &b);
 
 
 //CHECK FUCTION _ DELETE LATER
@@ -138,3 +140,79 @@ void	print_stack(t_node *stack)
 		stack = stack->next;
 	}
 }
+
+
+int	stack_size(t_node *node)
+{
+	int	i;
+
+	i = 0;
+	while (node != NULL)
+	{
+		i++;
+		node = node->next;
+	}
+	return (i);
+}
+
+
+int	stack_is_sorted(t_node *a)
+{
+	while (a->next!= NULL)
+	{
+		if ( a->number > a->next->number)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
+t_node	*get_max_node(t_node	*node)
+{
+	t_node	*max_node;
+
+	if (node == NULL)
+		return (NULL);
+	max_node = node;
+	while (node != NULL)
+	{
+		if	(max_node->number < node->number)
+			max_node = node;
+		node = node->next;
+	}
+	return (max_node);
+}
+
+void	sort_three(t_node **a)
+{
+	t_node	*max_node;
+
+	max_node = get_max_node(*a);
+	if (max_node == *a)
+		ra(a);
+	else if(max_node ==(*a)->next)
+		rra(a);
+	if ((*a)->number > (*a)->next->number)
+		sa(a);
+}
+
+void sort_stack(t_node **a, t_node **b)
+{
+	int	size;
+
+	if (*a == NULL)
+		return;
+
+	if (!stack_is_sorted(*a))
+	{
+		size = stack_size(*a);
+		if (size == 2)
+		{
+			sa(a);
+		}
+		 else if (size == 3)
+		 	sort_three(a);
+	}
+	b = a;
+}
+
