@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:55:56 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/16 12:00:01 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/16 15:58:17 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,44 @@ void	calculate_index(t_node *node)
 
 
 
-void	find_target(t_node *src, t_node *dest)
+void	find_target_a(t_node *a, t_node *b)
 {
+	t_node	*b_check;
 
-
-	while (src!= NULL)
+	while (a!= NULL)
 	{
-		while (dest != NULL)
+		b_check = b;
+		while (b != NULL)
 		{
-			if (src->nbr > dest->nbr
-				&& (src->target == NULL || src->target->nbr < dest->nbr))
-				src->target = dest;
+			if (a->nbr > b_check->nbr
+				&& (a->target == NULL || a->target->nbr < b_check->nbr))
+				a->target = b_check;
+			b = b_check->next;
 		}
-		if (src->target == NULL)
-			src->target == get_max_node(dest);
-
-		src = src->next;
+		if (a->target == NULL)
+			a->target = get_max_node(b);
+		a = a->next;
 	}
+}
 
+void	find_target_b(t_node *a, t_node *b)
+{
+	t_node	*a_check;
+
+	while (b!= NULL)
+	{
+		a_check = a;
+		while (a_check != NULL)
+		{
+			if (b->nbr < a_check->nbr
+				&& (b->target == NULL || b->target->nbr > a_check->nbr))
+				b->target = a_check;
+			a_check = a_check->next;
+		}
+		if (b->target == NULL)
+			b->target = get_min_node(a);
+		b = b->next;
+	}
 }
 
 // void find_push_price(t_node *a, t_node *b)
@@ -122,28 +142,145 @@ void find_push_price(t_node *src, t_node *dest)
 	}
 }
 
+t_node	*find_best_move(t_node	*node)
+{
+	t_node	*best_move;
 
-void	update_nodes_info(t_node *a, t_node *b)
+	best_move = node;
+	while (node)
+	{
+		if (node->push_price < best_move->push_price)
+			best_move = node;
+		node = node->next;
+	}
+	return (best_move);
+}
+
+
+void	update_nodes_info(t_node *a, t_node *b, char c)
 {
 	calculate_index (a);
 	calculate_index (b);
-	find_target (a,b);
-	find_push_price(a,b);
+	if (c =='a')
+	{
+		find_target_a(a,b);
+		find_push_price(a,b);
+	}
+	else
+	{
+		find_target_b(a,b);
+		find_push_price(a,b);
+	}
+
 }
 
-sort_big(t_node **a, t_node **b)
+void complete_rotation_a(t_node **src, t_node **dest, t_node *node,
+	 t_node *target_node)
+{
+	while (*src != node)
+	{
+		if (node->above_median)
+			ra(src);
+		else
+			rra(src);
+	}
+	while (*dest != target_node)
+	{
+		if (target_node->above_median)
+			rb(dest);
+		else
+			rrb(dest);
+	}
+}
+
+void complete_rotation_b(t_node **src, t_node **dest, t_node *node,
+	 t_node *target_node)
+{
+	while (*src != node)
+	{
+		if (node->above_median)
+			rb(src);
+		else
+			rrb(src);
+	}
+	while (*dest != target_node)
+	{
+		if (target_node->above_median)
+			ra(dest);
+		else
+			rra(dest);
+	}
+}
+
+void push_best_node(t_node **src, t_node **dest, char c)
+{
+	t_node	*node;
+	t_node	*target_node;
+
+	node = find_best_move(*src);
+	target_node = node->target;
+	if (node->above_median == target_node->above_median)
+	{
+		while (*src != node && *dest != target_node)
+		{
+			if (node->above_median)
+				rr(src,dest);
+			else
+				rrr(src,dest);
+		}
+	}
+	if (c == 'a')
+		complete_rotation_a(src, dest, node, target_node);
+	else if (c =='b')
+		complete_rotation_b(src, dest, node, target_node);
+}
+
+
+
+// sort_big(t_node **a, t_node **b)
+// {
+// 	int	size;
+
+// 	pb(a, b);
+// 	size == stack_size(*a);
+// 	if (size-- >3)
+// 		pb(a,b);
+// 	while (size-->3)
+// 	{
+// 		update_nodes_info(*a, *b);
+// 		push_best_node(a, b, 'a');
+// 		size--;
+// 	}
+// 	sort_three(a);
+// 	while (*b != NULL)
+// 	{
+// 		update_nodes_info(*b, *a);
+// 		push_best_node(b, a, 'b');
+// 	}
+
+// }
+
+
+void sort_big(t_node **a, t_node **b)
 {
 	int	size;
 
 	pb(a, b);
-	size == stack_size(*a);
+	size = stack_size(*a);
 	if (size-- >3)
 		pb(a,b);
-
 	while (size-->3)
 	{
-		update_nodes_info(*a, *b);
+		update_nodes_info(*a, *b, 'a');
+		push_best_node(a, b, 'a');
+		size--;
 	}
+	sort_three(a);
+	while (*b != NULL)
+	{
+		update_nodes_info(*b, *a, 'b');
+		push_best_node(b, a, 'b');
+	}
+
+
 }
-
-

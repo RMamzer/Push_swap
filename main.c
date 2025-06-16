@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/13 18:08:29 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/16 15:50:58 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,12 @@ void sort_stack(t_node **a, t_node **b)
 	{
 		size = stack_size(*a);
 		if (size == 2)
-		{
 			sa(a);
-		}
 		else if (size == 3)
 		 	sort_three(a);
-		else sort_big(a, b);
+		else
+			sort_big(a, b);
 	}
-	b = a;
 }
 
 
