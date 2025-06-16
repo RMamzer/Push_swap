@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:55:56 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/16 15:58:17 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/16 16:36:28 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	calculate_index(t_node *node)
 			node->index = i;
 			if (i <= median)
 				node->above_median = 1;
+			else
+				node->above_median = 0;
 			node = node->next;
 			i++;
 		}
@@ -169,7 +171,7 @@ void	update_nodes_info(t_node *a, t_node *b, char c)
 	else
 	{
 		find_target_b(a,b);
-		find_push_price(a,b);
+		find_push_price(b,a);
 	}
 
 }
@@ -191,6 +193,8 @@ void complete_rotation_a(t_node **src, t_node **dest, t_node *node,
 		else
 			rrb(dest);
 	}
+	// REVIEEEEEEW
+	pa(dest, src);
 }
 
 void complete_rotation_b(t_node **src, t_node **dest, t_node *node,
@@ -210,6 +214,8 @@ void complete_rotation_b(t_node **src, t_node **dest, t_node *node,
 		else
 			rra(dest);
 	}
+	//REVIEEEEEW
+	pb(src, dest);
 }
 
 void push_best_node(t_node **src, t_node **dest, char c)
@@ -278,7 +284,7 @@ void sort_big(t_node **a, t_node **b)
 	sort_three(a);
 	while (*b != NULL)
 	{
-		update_nodes_info(*b, *a, 'b');
+		update_nodes_info(*a, *b, 'b');
 		push_best_node(b, a, 'b');
 	}
 
