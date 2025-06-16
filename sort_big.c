@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:55:56 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/13 18:30:50 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/16 12:00:01 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ void	calculate_index(t_node *node)
 
 // }
 
+
+
+
+
 void	find_target(t_node *src, t_node *dest)
 {
 
@@ -74,12 +78,57 @@ void	find_target(t_node *src, t_node *dest)
 
 }
 
+// void find_push_price(t_node *a, t_node *b)
+// {
+// 	int size_a;
+// 	int size_b;
+
+// 	size_a = stack_size(a);
+// 	size_b = stack_size(b);
+
+// 	while(a)
+// 	{
+// 		a->push_price== a->index;
+// 		if (!(a->above_median))
+// 			a->push_price = size_a - (a->index);
+// 		if (a->target->above_median)
+// 	}
+// }
+
+void find_push_price(t_node *src, t_node *dest)
+{
+	int	size_src;
+	int	size_dest;
+	int p_target;
+
+	size_src = stack_size(src);
+	size_dest = stack_size(dest);
+	while (src)
+	{
+		p_target = 0;
+		if (src->above_median)
+			src->push_price = src->index;
+		else
+			src->push_price = size_src - (src->index);
+		if (src->target->above_median)
+			p_target = src->target->index;
+		else
+			p_target = size_dest - (src->target->index);
+		if (src->above_median != src->target->above_median)
+			src->push_price += p_target;
+		else if (src->push_price < p_target)
+			src->push_price = p_target;
+		src = src->next;
+	}
+}
+
 
 void	update_nodes_info(t_node *a, t_node *b)
 {
 	calculate_index (a);
 	calculate_index (b);
 	find_target (a,b);
+	find_push_price(a,b);
 }
 
 sort_big(t_node **a, t_node **b)

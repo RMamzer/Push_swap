@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:35:22 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/13 18:07:57 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/16 10:41:59 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_node
 		int	nbr;
 		int	index;
 		int	above_median;
+		int push_price;
 
 		struct s_node	*next;
 		struct s_node	*previous;
