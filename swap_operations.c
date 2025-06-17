@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:53:19 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/13 14:54:47 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/17 19:43:34 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	swap_operation(t_node **stack)
 	first = *stack;
 	second = (*stack)->next;
 	first->next = second->next;
+	if (second->next != NULL)
+		second->next->previous = first;
 	second->next = first;
 	second->previous = NULL;
 	first->previous = second;

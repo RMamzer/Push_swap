@@ -6,11 +6,14 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:55:56 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/16 16:36:28 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/17 19:46:36 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
+void	print_stack(t_node *stack);
+
 
 void	calculate_index(t_node *node)
 {
@@ -66,13 +69,14 @@ void	find_target_a(t_node *a, t_node *b)
 
 	while (a!= NULL)
 	{
+		a->target = NULL;
 		b_check = b;
-		while (b != NULL)
+		while (b_check != NULL)
 		{
 			if (a->nbr > b_check->nbr
 				&& (a->target == NULL || a->target->nbr < b_check->nbr))
 				a->target = b_check;
-			b = b_check->next;
+			b_check = b_check->next;
 		}
 		if (a->target == NULL)
 			a->target = get_max_node(b);
@@ -86,6 +90,7 @@ void	find_target_b(t_node *a, t_node *b)
 
 	while (b!= NULL)
 	{
+		b->target = NULL;
 		a_check = a;
 		while (a_check != NULL)
 		{
@@ -176,46 +181,52 @@ void	update_nodes_info(t_node *a, t_node *b, char c)
 
 }
 
-void complete_rotation_a(t_node **src, t_node **dest, t_node *node,
+void complete_rotation_a(t_node **a, t_node **b, t_node *node,
 	 t_node *target_node)
 {
-	while (*src != node)
+	while (*a != node)
 	{
 		if (node->above_median)
-			ra(src);
+			ra(a);
 		else
-			rra(src);
+			rra(a);
 	}
-	while (*dest != target_node)
+	while (*b != target_node)
 	{
 		if (target_node->above_median)
-			rb(dest);
+			rb(b);
 		else
-			rrb(dest);
+			rrb(b);
 	}
 	// REVIEEEEEEW
-	pa(dest, src);
+	pb(a,b);
 }
 
-void complete_rotation_b(t_node **src, t_node **dest, t_node *node,
+void complete_rotation_b(t_node **b, t_node **a, t_node *node,
 	 t_node *target_node)
 {
-	while (*src != node)
+	while (*b != node)
 	{
 		if (node->above_median)
-			rb(src);
+			rb(b);
 		else
-			rrb(src);
+			rrb(b);
 	}
-	while (*dest != target_node)
+	while (*a != target_node)
 	{
 		if (target_node->above_median)
-			ra(dest);
+			ra(a);
 		else
-			rra(dest);
+		{
+			// printf("before rra:\n");
+			// print_stack(*a);
+			rra(a);
+			// printf("after rra:\n");
+			// print_stack(*a);
+		}
 	}
 	//REVIEEEEEW
-	pb(src, dest);
+	pa(a,b);
 }
 
 void push_best_node(t_node **src, t_node **dest, char c)
@@ -230,9 +241,9 @@ void push_best_node(t_node **src, t_node **dest, char c)
 		while (*src != node && *dest != target_node)
 		{
 			if (node->above_median)
-				rr(src,dest);
+				rr(dest,src);
 			else
-				rrr(src,dest);
+				rrr(dest,src);
 		}
 	}
 	if (c == 'a')
@@ -266,27 +277,88 @@ void push_best_node(t_node **src, t_node **dest, char c)
 
 // }
 
+void finalize_stack_a(t_node **a)
+{
+
+	t_node	*min;
+
+	calculate_index (*a);
+	min = get_min_node(*a);
+
+	while (*a != min)
+	{
+		if (min->above_median)
+			ra(a);
+		else
+			rra(a);
+	}
+
+}
 
 void sort_big(t_node **a, t_node **b)
 {
+	// CLEAN PRINTS!!!!!!!!!!!!!!!!!!!!
 	int	size;
+
+	// printf("Enter -- Print stack A:\n");
+	// print_stack(*a);
+	// printf("Print stack B:\n");
+	// print_stack(*b);
+	// printf("\n\n\n");
 
 	pb(a, b);
 	size = stack_size(*a);
 	if (size-- >3)
 		pb(a,b);
+
+	// printf("After Pushes -- Print stack A:\n");
+	// print_stack(*a);
+	// printf("Print stack B:\n");
+	// print_stack(*b);
+	// printf("\n\n\n");
+
 	while (size-->3)
 	{
 		update_nodes_info(*a, *b, 'a');
 		push_best_node(a, b, 'a');
-		size--;
+
+		// printf("1st Lopp -- Print stack A:\n");
+		// print_stack(*a);
+		// printf("Print stack B:\n");
+		// print_stack(*b);
+		// printf("\n\n\n");
 	}
 	sort_three(a);
+
+	// printf("After sort 3 -- Print stack A:\n");
+	// print_stack(*a);
+	// printf("Print stack B:\n");
+	// print_stack(*b);
+	// printf("\n\n\n");
+
 	while (*b != NULL)
 	{
 		update_nodes_info(*a, *b, 'b');
 		push_best_node(b, a, 'b');
-	}
 
+		// printf("2nd Loop -- Print stack A:\n");
+		// print_stack(*a);
+		// printf("Print stack B:\n");
+		// print_stack(*b);
+		// printf("\n\n\n");
+	}
+	// printf("BEFORE FINAL -- Print stack A:\n");
+	// print_stack(*a);
+	// printf("Print stack B:\n");
+	// print_stack(*b);
+	// printf("\n\n\n");
+
+	finalize_stack_a(a);
+
+	// printf("FINAL -- Print stack A:\n");
+	// print_stack(*a);
+	// printf("Print stack B:\n");
+	// print_stack(*b);
+	// printf("\n\n\n");
 
 }

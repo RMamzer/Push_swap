@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/16 15:50:58 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/17 19:47:20 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@
 
 void	print_stack(t_node *stack)
 {
-	while (stack)
-	{
-		printf("num: %d", stack->nbr);
-		// Optional: print index too
-		//printf(", index: %d", stack->index);
-		printf("\n");
-		stack = stack->next;
-	}
-
+printf("--- Stack Contents ---\n");
+    while (stack)
+    {
+        printf("NODE %d (addr:%p): next=%p, prev=%p\n",
+               stack->nbr,
+               (void*)stack,
+               (void*)stack->next,
+               (void*)stack->previous);
+        stack = stack->next;
+    }
+    printf("----------------------\n");
 }
 
 void	create_stack_a(t_node **a, char **argv, int split_used)
@@ -53,11 +55,23 @@ void	sort_three(t_node **a)
 
 	max_node = get_max_node(*a);
 	if (max_node == *a)
+	{
+		// printf ("-----------------------------------------------------------------\nBefore ra");
+		// print_stack(*a);
 		ra(a);
+		// printf("after ra\n");
+		// print_stack(*a);
+	}
 	else if(max_node ==(*a)->next)
 		rra(a);
 	if ((*a)->nbr > (*a)->next->nbr)
+	{
+		// printf ("-----------------------------------------------------------------\nBefore sa");
+		// print_stack(*a);
 		sa(a);
+		// printf("after sa\n");
+		// print_stack(*a);
+	}
 }
 
 void sort_stack(t_node **a, t_node **b)
@@ -102,11 +116,13 @@ int main(int argc, char **argv)
 	sort_stack(&a, &b);
 
 
-//CHECK FUCTION _ DELETE LATER
-	printf("ac count =%d\n", argc);
-	// check_sort(a_stack, b_stack, ac, splitted);
-	printf("A stack contents:\n");
-	print_stack(a);
+// //CHECK FUCTION _ DELETE LATER
+// 	printf("ac count =%d\n", argc);
+// 	// check_sort(a_stack, b_stack, ac, splitted);
+// 	printf("A stack contents:\n");
+// 	print_stack(a);
+// 	printf("B stack contents:\n");
+// 	print_stack(b);
 	free_stack(&a);
 
 	return (0);
