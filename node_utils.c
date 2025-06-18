@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:36:21 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/18 15:01:28 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/18 16:32:00 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_node	*get_max_node(t_node	*node)
 	max_node = node;
 	while (node != NULL)
 	{
-		if	(max_node->nbr < node->nbr)
+		if (max_node->nbr < node->nbr)
 			max_node = node;
 		node = node->next;
 	}
@@ -46,7 +46,7 @@ t_node	*get_min_node(t_node	*node)
 	min_node = node;
 	while (node != NULL)
 	{
-		if	(min_node->nbr > node->nbr)
+		if (min_node->nbr > node->nbr)
 			min_node = node;
 		node = node->next;
 	}
@@ -65,6 +65,3 @@ int	stack_size(t_node *node)
 	}
 	return (i);
 }
-
-
-

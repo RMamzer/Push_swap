@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:53:19 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/18 15:02:04 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/18 16:25:12 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ void	sa(t_node **a)
 	swap_operation(a);
 	write (1, "sa\n", 3);
 }
+
 void	sb(t_node **b)
 {
 	swap_operation(b);
 	write (1, "sb\n", 3);
 }
-void	ss(t_node **a, t_node ** b)
+
+void	ss(t_node **a, t_node **b)
 {
 	swap_operation(a);
 	swap_operation(b);

@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:27:20 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/13 14:58:31 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/18 16:28:10 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ void	free_stack(t_node **a)
 {
 	t_node	*current;
 	t_node	*temp;
+
 	if (a == NULL)
-		return;
+		return ;
 	current = *a;
-	while(current != NULL)
+	while (current != NULL)
 	{
 		temp = current;
 		current = current->next;
@@ -41,11 +42,9 @@ void	free_stack(t_node **a)
 
 void	errors_exit(t_node **a, char **argv, int split_used)
 {
-
 	if (split_used)
 		free_split(argv);
 	free_stack(a);
 	write (2, "Error\n", 6);
 	exit (1);
 }
-

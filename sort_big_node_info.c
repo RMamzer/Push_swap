@@ -6,26 +6,25 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:55:56 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/18 15:36:20 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/18 16:33:57 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
 void	update_nodes_info(t_node *a, t_node *b, char c)
 {
-	calculate_index (a);
-	calculate_index (b);
-	if (c =='a')
+	calculate_index(a);
+	calculate_index(b);
+	if (c == 'a')
 	{
-		find_target_a(a,b);
-		find_push_price(a,b);
+		find_target_a(a, b);
+		find_push_price(a, b);
 	}
 	else
 	{
-		find_target_b(a,b);
-		find_push_price(b,a);
+		find_target_b(a, b);
+		find_push_price(b, a);
 	}
 }
 
@@ -35,24 +34,24 @@ void	calculate_index(t_node *node)
 	int	i;
 
 	i = 0;
-	median = stack_size(node)/2;
+	median = stack_size(node) / 2;
 	while (node != NULL)
-		{
-			node->index = i;
-			if (i <= median)
-				node->above_median = 1;
-			else
-				node->above_median = 0;
-			node = node->next;
-			i++;
-		}
+	{
+		node->index = i;
+		if (i <= median)
+			node->above_median = 1;
+		else
+			node->above_median = 0;
+		node = node->next;
+		i++;
+	}
 }
 
 void	find_target_a(t_node *a, t_node *b)
 {
 	t_node	*b_check;
 
-	while (a!= NULL)
+	while (a != NULL)
 	{
 		a->target = NULL;
 		b_check = b;
@@ -73,7 +72,7 @@ void	find_target_b(t_node *a, t_node *b)
 {
 	t_node	*a_check;
 
-	while (b!= NULL)
+	while (b != NULL)
 	{
 		b->target = NULL;
 		a_check = a;
@@ -94,7 +93,7 @@ void	find_push_price(t_node *src, t_node *dest)
 {
 	int	size_src;
 	int	size_dest;
-	int p_target;
+	int	p_target;
 
 	size_src = stack_size(src);
 	size_dest = stack_size(dest);
@@ -116,4 +115,3 @@ void	find_push_price(t_node *src, t_node *dest)
 		src = src->next;
 	}
 }
-

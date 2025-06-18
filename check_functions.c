@@ -6,26 +6,27 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 15:01:23 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/18 15:01:25 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/18 16:37:58 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int check_only_digits(char *str)
+int	check_only_digits(char *str)
 {
-	size_t i;
+	size_t	i;
+
 	i = 0;
-	if (str[i] != '-' && str[i] !='+' && !ft_isdigit(str[i]))
+	if (str[i] != '-' && str[i] != '+' && !ft_isdigit(str[i]))
 		return (0);
-	else if(str[i] == '-' || str[i] =='+' )
+	else if (str[i] == '-' || str[i] == '+' )
 		i++;
 	if (!ft_isdigit(str[i]))
 		return (0);
-	while(str[i])
+	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			return(0);
+			return (0);
 		i++;
 	}
 	return (1);
@@ -62,13 +63,14 @@ int	ft_atoi_limits(const char *nptr, t_node **a, char **argv, int split_used)
 int	check_duplicates(t_node **a, int num)
 {
 	t_node	*temp;
+
 	if (*a == NULL)
 		return (1);
 	temp = *a;
-	while(temp != NULL)
+	while (temp != NULL)
 	{
-		if ( temp->nbr == num)
-			return(0);
+		if (temp->nbr == num)
+			return (0);
 		temp = temp->next;
 	}
 	return (1);
@@ -78,6 +80,7 @@ void	add_node(t_node **a, int num, char **argv, int split_used)
 {
 	t_node	*new_node;
 	t_node	*last_node;
+
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		errors_exit(a, argv, split_used);
@@ -86,7 +89,6 @@ void	add_node(t_node **a, int num, char **argv, int split_used)
 	new_node->previous = NULL;
 	new_node->target = NULL;
 	new_node->above_median = 0;
-
 	if (*a == NULL)
 		*a = new_node;
 	else
@@ -95,14 +97,13 @@ void	add_node(t_node **a, int num, char **argv, int split_used)
 		last_node->next = new_node;
 		new_node->previous = last_node;
 	}
-
 }
 
 int	stack_is_sorted(t_node *a)
 {
-	while (a->next!= NULL)
+	while (a->next != NULL)
 	{
-		if ( a->nbr > a->next->nbr)
+		if (a->nbr > a->next->nbr)
 			return (0);
 		a = a->next;
 	}
