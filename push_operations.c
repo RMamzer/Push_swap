@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 14:09:57 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/17 18:58:38 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/18 15:01:32 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ static void	push_operation(t_node **dest,t_node **src)
 		node->next->previous = node;
 		*dest = node;
 	}
-	// CHECK IF NEEDED
-	// node->target = NULL;
-	// node->best_move = 0;
 }
 
 void	pa(t_node **a, t_node **b)

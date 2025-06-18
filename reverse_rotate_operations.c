@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:41:33 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/17 19:14:52 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/18 15:01:38 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ static void	reverse_rotate_operation(t_node **stack)
 	if (*stack == NULL || (*stack)->next == NULL)
 		return;
 	last = get_last_node(*stack);
-	// last->previous->next = NULL;
-	// last->previous = NULL;
-	// last->next =*stack;
-	// *stack = last;
-	// last->next->previous = last;
 	last->previous->next = NULL;
 	last->next = *stack;
 	last->previous = NULL;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_input.c                                      :+:      :+:    :+:   */
+/*   check_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 15:01:23 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/13 18:08:43 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/18 15:01:25 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int check_only_digits(char *str)
 {
 	size_t i;
-	//check if NULL ptr;
 	i = 0;
 	if (str[i] != '-' && str[i] !='+' && !ft_isdigit(str[i]))
 		return (0);
@@ -71,6 +70,41 @@ int	check_duplicates(t_node **a, int num)
 		if ( temp->nbr == num)
 			return(0);
 		temp = temp->next;
+	}
+	return (1);
+}
+
+void	add_node(t_node **a, int num, char **argv, int split_used)
+{
+	t_node	*new_node;
+	t_node	*last_node;
+	new_node = malloc(sizeof(t_node));
+	if (!new_node)
+		errors_exit(a, argv, split_used);
+	new_node->nbr = num;
+	new_node->next = NULL;
+	new_node->previous = NULL;
+	new_node->target = NULL;
+	new_node->above_median = 0;
+
+	if (*a == NULL)
+		*a = new_node;
+	else
+	{
+		last_node = get_last_node(*a);
+		last_node->next = new_node;
+		new_node->previous = last_node;
+	}
+
+}
+
+int	stack_is_sorted(t_node *a)
+{
+	while (a->next!= NULL)
+	{
+		if ( a->nbr > a->next->nbr)
+			return (0);
+		a = a->next;
 	}
 	return (1);
 }
