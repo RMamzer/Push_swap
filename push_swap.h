@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:35:22 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/18 16:22:32 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/18 17:36:33 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <limits.h>
+# include <stdlib.h>
 # include "libft/libft.h"
 
 typedef struct s_node

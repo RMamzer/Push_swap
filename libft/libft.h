@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:12:32 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/04/28 13:07:33 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/18 17:36:00 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-
-// // axel tests - REMOVE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# include <stddef.h>
-# include <stdint.h>
 
 // mandatory functions
 int		ft_isalpha(int c);

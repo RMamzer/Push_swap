@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:31:25 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/06/18 16:31:12 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/06/19 12:54:50 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	main(int argc, char **argv)
 	{
 		argv = ft_split(argv[1], ' ');
 		if (argv == NULL || argv[0] == NULL)
-			errors_exit(&a, argv, 0);
+			errors_exit(&a, argv, 1);
 		create_stack_a(&a, argv, 1);
 		free_split (argv);
 	}
